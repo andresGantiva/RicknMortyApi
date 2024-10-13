@@ -1,0 +1,23 @@
+<html>
+  <body>
+  <h1>Personajes y sus Episodios</h1>
+<div class="CharactersContainer" *ngIf="characters.length > 0;">
+  <div  *ngFor="let character of characters">
+    <h2>{{ character.name }}</h2>
+    <img [src]="character.image" alt="{{ character.name }}"> <!-- Evento click -->
+    <p><b>Estado:</b> {{ character.status }}</p>
+    <p><b>Especie:</b> {{ character.species }}</p>
+    <button (click)="toggleEpisodes(character)" style="cursor: pointer;">Episodios en los que aparece:</button>
+    
+    <ul *ngIf="character.showEpisodes && character.episodesDetails.length > 0">
+      <li *ngFor="let episode of character.episodesDetails; let i = index" [hidden]="i > 10">
+        {{ episode.episode }} - {{ episode.name }} ({{ episode.air_date }})
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+
+</html>
+
+
